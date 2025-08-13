@@ -1,0 +1,36 @@
+const botaoAcessibilidade = document.getElementById('botao-acessibilidade');
+const opcoesAcessibilidade = document.getElementById('opcoes-acessibilidade');
+const aumentarFonte = document.getElementById('aumentar-fonte');
+const diminuirFonte = document.getElementById('diminuir-fonte');
+const alternaContraste = document.getElementById('alterna-contraste');
+const corpo = document.body;
+
+// Mostrar/ocultar opções
+botaoAcessibilidade.addEventListener('click', (e) => {
+    e.stopPropagation();
+    opcoesAcessibilidade.classList.toggle('show');
+});
+
+// Fechar menu ao clicar fora
+document.addEventListener('click', (e) => {
+    if (!opcoesAcessibilidade.contains(e.target) && e.target !== botaoAcessibilidade) {
+        opcoesAcessibilidade.classList.remove('show');
+    }
+});
+
+// Aumentar fonte (12px a 24px)
+aumentarFonte.addEventListener('click', () => {
+    let tamanhoAtual = parseFloat(window.getComputedStyle(corpo).fontSize);
+    if (tamanhoAtual < 24) corpo.style.fontSize = (tamanhoAtual + 2) + 'px';
+});
+
+// Diminuir fonte (12px a 24px)
+diminuirFonte.addEventListener('click', () => {
+    let tamanhoAtual = parseFloat(window.getComputedStyle(corpo).fontSize);
+    if (tamanhoAtual > 12) corpo.style.fontSize = (tamanhoAtual - 2) + 'px';
+});
+
+// Alternar contraste
+alternaContraste.addEventListener('click', () => {
+    corpo.classList.toggle('contraste');
+});
